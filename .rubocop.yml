@@ -1,0 +1,29 @@
+inherit_mode:
+  merge:
+    - Exclude
+
+AllCops:
+  NewCops: enable
+  SuggestExtensions: false
+  Exclude:
+    - 'Guardfile'
+    - 'horoscope.rb'
+  TargetRubyVersion: 3.2
+
+Layout/LineLength:
+  Enabled: true
+  Max: 120
+
+Metrics/BlockLength:
+  Enabled: true
+  Exclude:
+    - 'spec/**/*'
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/NumericLiteralPrefix:
+  Enabled: false
