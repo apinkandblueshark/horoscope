@@ -31,6 +31,8 @@ RSpec.describe Main do
     before do
       stdin_double = instance_double('$stdin', chomp: birthday)
       allow($stdin).to receive(:gets) { stdin_double }
+
+      allow_any_instance_of(Io).to receive(:sleep)
     end
 
     it 'Asks for users birthday and returns the corresponding lyric' do
