@@ -15,6 +15,8 @@ RSpec.describe Io do
     before do
       stdin_double = instance_double('$stdin', chomp: birthday)
       allow($stdin).to receive(:gets) { stdin_double }
+
+      allow(io).to receive(:sleep)
     end
 
     it { is_expected.to eq result }
@@ -22,8 +24,8 @@ RSpec.describe Io do
     context 'when the birthday is invalid' do
       let(:birthday) { 'string' }
 
-      it 'raises a HoroscopeError' do
-        expect { ask_for_birthday }.to raise_error(HoroscopeError)
+      it 'raises an IoError' do
+        expect { ask_for_birthday }.to raise_error(IoError)
       end
     end
   end

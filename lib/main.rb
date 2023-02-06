@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_relative 'lyric'
 require_relative 'errors'
 require_relative 'io'
+require_relative 'lyric'
 
 class Main
   def intro
@@ -13,7 +13,7 @@ class Main
     lyric = Lyric.find_lyric(birthdate)
 
     io.sing(lyric)
-  rescue HoroscopeError
+  rescue IoError
     intro
   end
 

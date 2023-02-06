@@ -6,7 +6,7 @@ require_relative 'errors'
 
 class Io
   def ask_for_birthday
-    print "What is your birthday?\n"
+    say "What is your birthday?\n"
 
     birthday = $stdin.gets.chomp
 
@@ -14,12 +14,9 @@ class Io
   end
 
   def sing(lyric)
-    say "#{lyric.name}\n"
-    say "\n"
-    say "#{lyric.lyric}\n"
-    say "\n"
-
-    outro
+    say "#{lyric.name}\n\n"
+    slow_talk "#{lyric.lyric}\n\n"
+    say outro
   end
 
   def say(str)
@@ -35,12 +32,19 @@ class Io
   rescue Date::Error
     print "Invalid birthday!\n\n"
 
-    raise HoroscopeError, 'invalid birthday'
+    raise IoError, 'invalid birthday'
   end
 
   def outro
-    print "That's your horoscope for today (that's your horoscope for today)\nThat's your horoscope for today\n" \
-          "That's your horoscope for today (that's your horoscope for today)\nThat's your horoscope for today " \
-          "(that's your horoscope for today)\n"
+    "That's your horoscope for today (that's your horoscope for today)\nThat's your horoscope for today\n" \
+      "That's your horoscope for today (that's your horoscope for today)\nThat's your horoscope for today " \
+      "(that's your horoscope for today)\n"
+  end
+
+  def slow_talk(str, speed: 0.10)
+    str.each_char do |c|
+      say c
+      sleep speed
+    end
   end
 end
